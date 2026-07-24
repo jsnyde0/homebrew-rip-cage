@@ -1,10 +1,10 @@
 class RipCage < Formula
   desc "Docker sandbox for Claude Code agents with a safety stack"
   homepage "https://github.com/jsnyde0/rip-cage"
-  url "https://github.com/jsnyde0/rip-cage/archive/refs/tags/v0.12.1.tar.gz"
-  # PLACEHOLDER — updated post-tag by scripts/update-formula-sha.sh.
+  url "https://github.com/jsnyde0/rip-cage/archive/refs/tags/v0.13.0.tar.gz"
+  # PLACEHOLDER — updated post-tag by packaging/scripts/update-formula-sha.sh.
   # See "Release ceremony" in docs/decisions/ADR-008-open-source-publication.md D6/D8.
-  sha256 "0b474e3977fc31808a6377d06d4af6445e057bc74d0c796f566af4fd2a037739"
+  sha256 "b239dd78af61d91222adbe756d8be036c8964280a9e289b4958ce6d15a11f827"
   license "MIT"
 
   head "https://github.com/jsnyde0/rip-cage.git", branch: "main"
@@ -39,9 +39,8 @@ class RipCage < Formula
     # Layout: _resolve_script_dir (rc:6-16) follows the bin/rc symlink to
     # libexec/. The Dockerfile and friends must be reachable from there for
     # cmd_build to find them — verify the layout is intact.
-    assert_predicate libexec/"Dockerfile", :exist?
-    assert_predicate libexec/"init-rip-cage.sh", :exist?
-    assert_predicate libexec/"hooks/block-compound-commands.sh", :exist?
+    assert_predicate libexec/"cage/Dockerfile", :exist?
+    assert_predicate libexec/"cage/init/init-rip-cage.sh", :exist?
     assert_predicate libexec/"VERSION", :exist?
   end
 end
